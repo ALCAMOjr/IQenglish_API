@@ -10,8 +10,16 @@ const app = express()
 
 
 
-dotenv.config()
+try {
+    dotenv.config();
+    console.log('Environment variables loaded successfully.');
+  } catch (error) {
+    console.error('Error loading environment variables:', error);
+  }
+  
 
+const port = process.env.DB_PORT;
+console.log("Prueba", port)
 
 app.use(cors());
 app.use(express.json())

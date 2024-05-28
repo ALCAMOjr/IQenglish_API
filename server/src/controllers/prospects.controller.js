@@ -5,9 +5,9 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-const API_KEY = process.env.API_KEY;
-console.log(API_KEY)
-const resend = new Resend(API_KEY);
+
+
+const resend = new Resend("re_4HiaRWtY_HqeysLMLMsNoPKeYuwsyEPfL");
 
 const validAddresses = [
     "Apodaca", "Cadereyta Jiménez", "García", "San Pedro Garza García", "General Escobedo", 

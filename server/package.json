@@ -1,0 +1,33 @@
+{
+  "name": "iqenglish_app",
+  "version": "1.0.0",
+  "description": "English school website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon src/index.js",
+    "start": "NODE_ENV=production node src/index.js",
+    "test": "NODE_ENV=test jest --verbose",
+    "test:watch": "npm run test -- --watch"
+  },
+  "author": "Alfredo Castellano",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.9.3",
+    "nodemailer": "^6.9.13",
+    "resend": "^3.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.4",
+    "babel-jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
+  }
+}

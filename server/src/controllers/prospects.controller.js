@@ -1,13 +1,12 @@
 import { pool } from "../db.js";
-// import { Resend } from 'resend';
+import { Resend } from 'resend';
 import dotenv from 'dotenv'
 
 
 dotenv.config()
 
-// const API_KEY = process.env.API_KEY;
-// console.log(API_KEY)
-// const resend = new Resend(API_KEY);
+const API_KEY = process.env.API_KEY;
+const resend = new Resend(API_KEY);
 
 const validAddresses = [
     "Apodaca", "Cadereyta Jiménez", "García", "San Pedro Garza García", "General Escobedo", 
@@ -82,20 +81,20 @@ export const createProspect = async (req, res) => {
         const [rows] = await pool.query('INSERT INTO prospects (name, lastname, email, phone_number, age, addresses) VALUES (?, ?, ?, ?, ?, ?)', [name, lastname, email, phone_number, age, address]);
 
         // // Enviar correo electrónico después de crear el prospecto
-        // const emailResponse = await resend.emails.send({
-        //     from: "Acme <onboarding@resend.dev>",
-        //     to: ['iqenglishapp@gmail.com'],
-        //     subject: 'Nuevo prospecto creado',
-        //     html: `<strong>Se ha creado un nuevo prospecto:</strong><br>Id: ${rows.insertId}`,
-        // });
+        const emailResponse = await resend.emails.send({
+            from: "Acme <onboarding@resend.dev>",
+            to: ['alfredocastellanoula.14@gmail.com.com'],
+            subject: 'Nuevo prospecto creado',
+            html: `<strong>Se ha creado un nuevo prospecto:</strong><br>Id: ${rows.insertId}`,
+        });
 
-        // // Capturar el ID del correo electrónico
-        // const emailId = emailResponse.data.id;
+        // Capturar el ID del correo electrónico
+        const emailId = emailResponse.data.id;
 
         res.send({
             id: rows.insertId,
             name,
-            // emailId
+            emailId
         });
     } catch (error) {
         console.error(error);

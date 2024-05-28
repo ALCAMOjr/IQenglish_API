@@ -4,9 +4,13 @@ import prospectsRoutes from './routes/prospects.routes.js'
 import advisorsRoutes from './routes/advisors.routes.js'
 import blogsRoutes from './routes/blogs.routes.js'
 import reviewsRoutes from './routes/reviews.routes.js'
+import dotenv from 'dotenv'
 import cors from "cors";
 const app = express()
 
+
+
+dotenv.config()
 
 const port = process.env.DB_PORT;
 console.log("Prueba", port)
@@ -24,8 +28,12 @@ app.use((req, res, next) => {
     })
 })
 
-initializeAdmin();
 
+console.log()
+// Inicializar el usuario administrador
+if (process.env.NODE_ENV !== 'test') {
+    initializeAdmin();
+}
 
 const PORT = process.env.PORT || 3001
 

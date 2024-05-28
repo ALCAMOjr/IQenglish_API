@@ -1,8 +1,13 @@
 import {createPool} from 'mysql2/promise'
 import dotenv from 'dotenv';
 
-dotenv.config();
-
+try {
+    dotenv.config();
+    console.log('Environment variables loaded successfully.');
+  } catch (error) {
+    console.error('Error loading environment variables:', error);
+  }
+  
 const {
   PASSWORD_DATABASE,
   USER_DATABASE,

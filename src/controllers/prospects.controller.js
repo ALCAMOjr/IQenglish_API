@@ -81,6 +81,7 @@ export const createProspect = async (req, res) => {
 
         const [rows] = await pool.query('INSERT INTO prospects (name, lastname, email, phone_number, age, addresses) VALUES (?, ?, ?, ?, ?, ?)', [name, lastname, email, phone_number, age, address]);
 
+        console.log(rows.id)
         // // Enviar correo electrónico después de crear el prospecto
         const emailResponse = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
@@ -91,6 +92,7 @@ export const createProspect = async (req, res) => {
 
         // Capturar el ID del correo electrónico
         const emailId = emailResponse.data.id;
+        console.log(emailId)
 
         res.send({
             id: rows.insertId,

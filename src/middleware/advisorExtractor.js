@@ -5,10 +5,11 @@ import jsonwebtoken from 'jsonwebtoken'
 
     const authorizacion = req.get('authorization')
 
-    let token = ''
 
+    let token = ''
     if (authorizacion && authorizacion.toLowerCase().startsWith('bearer')) {
         token = authorizacion.substring(7)
+      
     }
 
     let decodedToken;
@@ -27,6 +28,7 @@ import jsonwebtoken from 'jsonwebtoken'
     const { id: userId } = decodedToken.userForToken
 
     req.userId = userId;
+
 
     next()
 }

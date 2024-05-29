@@ -173,7 +173,10 @@ export const updateProspect = async (req, res) => {
 
 export const deleteProspect = async (req, res) => {
     try {
-        const { userId } = req
+        const { userId } = req;
+        const { id } = req.params;
+
+        console.log("Parametro", id);
 
         // Verificar que el usuario sea de tipo admin o advisor
         const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
@@ -182,16 +185,20 @@ export const deleteProspect = async (req, res) => {
         }
 
         const user = users[0];
+        console.log("Tipo", user.user_type);
+
         if (!['admin', 'advisor'].includes(user.user_type)) {
             return res.status(403).send({ error: 'Unauthorized' });
         }
 
         // Eliminar el prospecto
-        const [result] = await pool.query('DELETE FROM prospects WHERE id = ?', [req.params.id]);
+        const [result] = await pool.query('DELETE FROM prospects WHERE id = ?', [id]);
 
-        if (result.affectedRows <= 0) return res.status(404).json({
-            message: 'Prospect not found'
-        });
+        if (result.affectedRows <= 0) {
+            return res.status(404).json({
+                message: 'Prospect not found'
+            });
+        }
         res.sendStatus(204);
     } catch (error) {
         console.error(error);

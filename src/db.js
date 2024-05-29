@@ -15,9 +15,6 @@ const {
 
 
 
-console.log("DATABASE:", DATABASE);
-console.log("NODE_ENV:", NODE_ENV);
-console.log("DB_PORT:", DB_PORT);
 
 const databaseString = NODE_ENV === 'test' ? DATABASE_TEST : DATABASE;
 

@@ -84,7 +84,7 @@ export const createProspect = async (req, res) => {
         // // Enviar correo electrónico después de crear el prospecto
         const emailResponse = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
-            to: ['alfredocastellanoula.14@gmail.com.com'],
+            to: ['alfredocastellanoula.14@gmail.com'],
             subject: 'Nuevo prospecto creado',
             html: `<strong>Se ha creado un nuevo prospecto:</strong><br>Id: ${rows.insertId}`,
         });
@@ -176,7 +176,6 @@ export const deleteProspect = async (req, res) => {
         const { userId } = req;
         const { id } = req.params;
 
-        console.log("Parametro", id);
 
         // Verificar que el usuario sea de tipo admin o advisor
         const [users] = await pool.query('SELECT * FROM advisors WHERE id = ?', [userId]);
@@ -185,7 +184,7 @@ export const deleteProspect = async (req, res) => {
         }
 
         const user = users[0];
-        console.log("Tipo", user.user_type);
+  
 
         if (!['admin', 'advisor'].includes(user.user_type)) {
             return res.status(403).send({ error: 'Unauthorized' });

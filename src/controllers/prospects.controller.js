@@ -84,7 +84,7 @@ export const createProspect = async (req, res) => {
         // // Enviar correo electrónico después de crear el prospecto
         const emailResponse = await resend.emails.send({
             from: "Acme <onboarding@resend.dev>",
-            to: ['alfredocastellanoula.14@gmail.com'],
+            to: ['iqmonterrey@gmail.com'],
             subject: 'Nuevo prospecto creado',
             html: `<strong>Se ha creado un nuevo prospecto:</strong><br>Id: ${rows.insertId}`,
         });

@@ -31,6 +31,8 @@ export const createReview = async (req, res) => {
     try {
         const { puntuacion, titulo, description, nombre } = req.body;
 
+
+        console.log(puntuacion, titulo, description, nombre)
         // Verificar que todos los campos requeridos estén presentes
         if (!puntuacion || !titulo || !description || !nombre) {
             return res.status(400).send({ error: 'Missing required fields' });
